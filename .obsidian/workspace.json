@@ -4,16 +4,16 @@
     "type": "split",
     "children": [
       {
-        "id": "b29d662c756faffa",
+        "id": "8677e07ce31e20f3",
         "type": "tabs",
         "children": [
           {
-            "id": "c0e17df1eae3d649",
+            "id": "9dffdbf9c49e04bc",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "README.md",
+                "file": "Courses/MIPT_DEVOps/README.md",
                 "mode": "source",
                 "source": false
               },
@@ -94,7 +94,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "README.md",
+                "file": "Courses/MIPT_DEVOps/README.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -113,7 +113,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "README.md",
+                "file": "Courses/MIPT_DEVOps/README.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               },
@@ -142,7 +142,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "README.md",
+                "file": "Courses/MIPT_DEVOps/README.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
@@ -151,12 +151,12 @@
               "title": "Outline of README"
             }
           }
-        ]
+        ],
+        "currentTab": 3
       }
     ],
     "direction": "horizontal",
-    "width": 300,
-    "collapsed": true
+    "width": 300
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -168,6 +168,30 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "c0e17df1eae3d649",
-  "lastOpenFiles": []
+  "active": "9dffdbf9c49e04bc",
+  "lastOpenFiles": [
+    "Термины и сокращения.md",
+    "Courses/MIPT_DEVOps/README.md",
+    "Courses/MIPT_DEVOps/LECT/MIPT_DO_L15.md",
+    "Courses/MIPT_DEVOps/LECT/MIPT_DO_L13.md",
+    "Courses/MIPT_DEVOps/LECT/MIPT_DO_L12.md",
+    "Courses/MIPT_DEVOps/LECT/MIPT_DO_L11.md",
+    "Courses/MIPT_DEVOps/LECT/MIPT_DO_L10.md",
+    "Courses/MIPT_DEVOps/LECT/MIPT_DO_L9.md",
+    "Courses/MIPT_DEVOps/LECT/MIPT_DO_L8.md",
+    "Courses/MIPT_DEVOps/LECT/MIPT_DO_L7.md",
+    "Courses/MIPT_DEVOps/LECT/MIPT_DO_L14.md",
+    "Courses/MIPT_DEVOps/LECT/MIPT_DO_L6.md",
+    "Courses/MIPT_DEVOps/LECT/MIPT_DO_L5.md",
+    "Courses/MIPT_DEVOps/LECT/MIPT_DO_L4.md",
+    "Courses/MIPT_DEVOps/LECT/MIPT_DO_L3.md",
+    "Courses/MIPT_DEVOps/LECT/MIPT_DO_L2.md",
+    "Courses/MIPT_DEVOps/LECT/MIPT_DO_L1.md",
+    "Courses/MIPT_DEVOps/PRACT",
+    "Courses/MIPT_DEVOps/LECT",
+    "README.md",
+    "Observability MOC.md",
+    "Courses/MIPT_DEVOps",
+    "Courses"
+  ]
 }
