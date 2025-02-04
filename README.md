@@ -19,15 +19,16 @@
 ```bash
 git config --global user.name "ваше имя"
 git config --global user.email ваш емейл
-git clone ```
-3) Скачайте клиент обсидиана с [официального сайта](https://obsidian.md/download) и установите
-4) Выберите **Open folder as vault** и откройте папку в которую вы сохранили репозиторий
-5) В настройках (нижний левый угол) включите поддержку **Community plugins** 
-6) Во вкладки **Git** в **Community plugins** настройте следующие хот-кеи:
+git clone
+```
+1) Скачайте клиент обсидиана с [официального сайта](https://obsidian.md/download) и установите
+2) Выберите **Open folder as vault** и откройте папку в которую вы сохранили репозиторий
+3) В настройках (нижний левый угол) включите поддержку **Community plugins** 
+4) Во вкладки **Git** в **Community plugins** настройте следующие хот-кеи:
 	- Git: Pull
 	- Git: Push 
 	- Git: Commit all changes
-7) Перед началом работы не забывайте обновлять репозиторий с помощью команды **Pull**
+5) Перед началом работы не забывайте обновлять репозиторий с помощью команды **Pull**
 
 >[!tip] 
 >Для того чтобы использовать панель команд нажмите ctl + p или на значок терминала слева сверху
@@ -55,19 +56,19 @@ git clone ```
 
 Чтобы можно было отслеживать изменения в документах и не закопаться в версиях мы будем использовать механизм Pull Request (PR) и [систему ветвления](https://habr.com/ru/articles/106912/). Убедительная просьба с ней ознакомиться. 
 Чтобы добавить изменения:
-1) Перейдите на dev ветку 
+6) Перейдите на dev ветку 
 ```bash
 git checkout dev 
 ```
-2) Создайте свою ветку от dev куда внесете изменения
+7) Создайте свою ветку от dev куда внесете изменения
 ```bash
 git checkout -b branch_name 
 ```
-3) После чего внесите необходимые изменения и запуште их в репозиторий
+8) После чего внесите необходимые изменения и запуште их в репозиторий
 ```bash
 git add *
 git commit -m 'description'
 git push
 ```
-4) [Создайте PR](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request) 
-5) Участвуйте в обсуждении PR 
+9) [Создайте PR](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request) 
+10) Участвуйте в обсуждении PR 
