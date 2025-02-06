@@ -37,10 +37,73 @@ tags:
 
 >[!seealso]
 >#cтатьи
+>- [Туториал Habr](https://habr.com/ru/articles/761072/)
+>- [Туториал_2 Habr](https://habr.com/ru/companies/raiffeisenbank/articles/461803/)
 >---
 >#видео
+> - [Лекция от ODS](https://www.youtube.com/watch?v=MhYicUx0-gA)
+> - [Про версионирование моделей и сбор метрик](https://www.youtube.com/watch?v=u4jmernq9Ak) 
 
 # Настройка  
 ## Как установить
 
+```bash 
+pip install dvc[all] # в зависимости от места хронения разные пакеты [s3], [gdrive] 
+```
+
+## Подключение GDrive 
+
+[Гайд по подключению](https://dvc.org/doc/user-guide/data-management/remote-storage/google-drive)
 # Рекомендации по работе
+
+## Добавление больших файлов в DVC:
+
+После установки и инициализации (dvc init) файлы можно добавить следующим образом:
+``` bash
+	dvc add data.csv
+	git add data.csv.dvc .gitignore
+	git commit -m ""
+            ```
+    
+**dvc add** создает .dvc-файл, а сам оригинальный файл остается в локальном хранилище или удаляется (если включен dvc cache)
+
+**git add .gitignore** нужен, потому что DVC автоматически добавляет в .gitignore все файлы, которые не должны попадать в Git
+
+Иными словами, команда dvc add создает файл <имя_файла>.dvc, который хранит ссылку на данные. Сам файл остается в локальном кэше или удаленном хранилище, а .gitignore исключает его из Git, чтобы не перегружать репозиторий.
+
+## Для загрузки в удаленное хранилище настраивается путь:
+
+- Для локального хранилища:
+```bash
+	dvc remote add myremote /mnt/data/dvcstore
+	dvc remote default myremote
+```
+
+- Для google drive (dvc[gdrive]) или s3 (dvc[s3]):
+	``` bash
+	dvc remote add myremote gdrive://<folder-id>            
+	dvc remote add myremote s3://mybucket/dvcstore
+	```
+
+## Для сохранения изменений:
+
+``` bash
+dvc push
+git push
+```
+
+## Как восстанавливать данные после клонирования репозитория с DVC-данными:
+
+``` bash
+git clone <repo-url>
+dvc pull
+```
+
+**dvc pull** подтягивает только последнюю версию. Если нужен полный контроль над версиями, можно использовать dvc checkout <версия> для восстановления конкретной версии данных (после переключения на нужный коммит в Git)
+
+## Как переключиться на состояние данных привязанных к конкретному коммиту
+
+```bash 
+git checkout # переходим в нужный нам коммит 
+dvc checkout # приводим состояние данных в актуальное 
+```
