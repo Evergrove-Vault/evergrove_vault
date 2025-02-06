@@ -4,5 +4,6 @@
   "obsidian-git",
   "obsidian-mind-map",
   "obsidian-outliner",
-  "templater-obsidian"
+  "templater-obsidian",
+  "graph-analysis"
 ]

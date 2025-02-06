@@ -19,7 +19,7 @@
 ```bash
 git config --global user.name "ваше имя"
 git config --global user.email ваш емейл
-git clone
+git clone https://github.com/Evergrove-Vault/evergrove_vault.git
 ```
 1) Скачайте клиент обсидиана с [официального сайта](https://obsidian.md/download) и установите
 2) Выберите **Open folder as vault** и откройте папку в которую вы сохранили репозиторий
