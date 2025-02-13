@@ -56,19 +56,19 @@ git clone https://github.com/Evergrove-Vault/evergrove_vault.git
 
 Чтобы можно было отслеживать изменения в документах и не закопаться в версиях мы будем использовать механизм Pull Request (PR) и [систему ветвления](https://habr.com/ru/articles/106912/). Убедительная просьба с ней ознакомиться. 
 Чтобы добавить изменения:
-6) Перейдите на dev ветку 
+1) Перейдите на dev ветку 
 ```bash
 git checkout dev 
 ```
-7) Создайте свою ветку от dev куда внесете изменения
+2) Создайте свою ветку от dev куда внесете изменения
 ```bash
 git checkout -b branch_name 
 ```
-8) После чего внесите необходимые изменения и запуште их в репозиторий
+3) После чего внесите необходимые изменения и запуште их в репозиторий
 ```bash
 git add *
 git commit -m 'description'
 git push
 ```
-9) [Создайте PR](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request) 
-10) Участвуйте в обсуждении PR 
+4) [Создайте PR](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request) 
+5) Участвуйте в обсуждении PR 
