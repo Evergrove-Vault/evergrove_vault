@@ -1,0 +1,6 @@
+---
+aliases:
+  - GNN
+tags:
+  - todo
+---

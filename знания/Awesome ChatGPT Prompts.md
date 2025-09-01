@@ -1,0 +1,1 @@
+Welcome to the "Awesome ChatGPT Prompts" repository! While this collection was originally created for [ChatGPT](https://chat.openai.com/chat), these prompts work great with other AI models like [Claude](https://claude.ai/new), [Gemini](https://gemini.google.com/), [Hugging Face Chat](https://hf.co/chat), [Llama](https://meta.ai/), [Mistral](https://chat.mistral.ai/), and more.

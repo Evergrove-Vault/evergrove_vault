@@ -1,0 +1,1 @@
+Разворачиваем Langfuse в Kubernetes: open-source альтернатива Langsmith / Хабр https://habr.com/ru/articles/877070/

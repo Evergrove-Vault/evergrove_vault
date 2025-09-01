@@ -1,0 +1,3 @@
+**FunASR** hopes to build a bridge between academic research and industrial applications on speech recognition. By supporting the training & finetuning of the industrial-grade speech recognition model, researchers and developers can conduct research and production of speech recognition models more conveniently, and promote the development of speech recognition ecology. ASR for Fun！
+
+https://github.com/modelscope/FunASR?tab=readme-ov-file

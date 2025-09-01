@@ -1,0 +1,4 @@
+---
+aliases:
+  - Minimum Viable Product
+---
