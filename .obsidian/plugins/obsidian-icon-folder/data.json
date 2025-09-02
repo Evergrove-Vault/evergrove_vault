@@ -1,0 +1,108 @@
+{
+  "settings": {
+    "migrated": 6,
+    "iconPacksPath": ".obsidian/icons",
+    "fontSize": 16,
+    "emojiStyle": "native",
+    "iconColor": null,
+    "recentlyUsedIcons": [
+      "📕",
+      "📙",
+      "📗",
+      "LiCalendarHeart",
+      "LiCalendarCheck"
+    ],
+    "recentlyUsedIconsSize": 5,
+    "rules": [
+      {
+        "rule": "MOC*",
+        "icon": "LiListTree",
+        "for": "everything",
+        "order": 0,
+        "color": "#00ff2a"
+      },
+      {
+        "rule": "[books|files]/book_*",
+        "icon": "LiBookOpenText",
+        "for": "everything",
+        "order": 1,
+        "color": "#b09303",
+        "useFilePath": true
+      },
+      {
+        "rule": "drawio*",
+        "icon": "LiChartGantt",
+        "for": "everything",
+        "order": 2,
+        "color": "#008efa",
+        "useFilePath": false
+      }
+    ],
+    "extraMargin": {
+      "top": 0,
+      "right": 4,
+      "bottom": 0,
+      "left": 0
+    },
+    "iconInTabsEnabled": true,
+    "iconInTitleEnabled": false,
+    "iconInTitlePosition": "above",
+    "iconInFrontmatterEnabled": true,
+    "iconInFrontmatterFieldName": "icon",
+    "iconColorInFrontmatterFieldName": "iconColor",
+    "iconsBackgroundCheckEnabled": false,
+    "iconsInNotesEnabled": true,
+    "iconsInLinksEnabled": true,
+    "iconIdentifier": ":",
+    "lucideIconPackType": "native",
+    "debugMode": false,
+    "useInternalPlugins": false
+  },
+  "inbox.md": "LiInbox",
+  "home.md": {
+    "iconName": "LiHome",
+    "iconColor": "#33c14b"
+  },
+  "PARA/archive": {
+    "iconName": "LiArchive",
+    "iconColor": "#fd3f3f"
+  },
+  "PARA/areas": "LiSquareStack",
+  "PARA/projects": "LiCalendarRange",
+  "PARA/resources": "LiInfo",
+  "zettelkasten": {
+    "iconName": "LiBrain",
+    "iconColor": "#ee00ff"
+  },
+  "files": "LiFiles",
+  "Полезные чаты.md": {
+    "iconName": "LiGanttChart",
+    "iconColor": "#428bff"
+  },
+  "day_notes/daily": {
+    "iconName": "LiNotebook",
+    "iconColor": "#ac96fd"
+  },
+  "day_notes/weekly": {
+    "iconName": "LiNotebook",
+    "iconColor": "#ac96fd"
+  },
+  "day_notes": {
+    "iconName": "LiNotebook",
+    "iconColor": "#ac96fd"
+  },
+  "day_notes/monthly": {
+    "iconName": "LiNotebook",
+    "iconColor": "#ac96fd"
+  },
+  "PARA/projects/преподавание/курс бизнес аналитика": "📗",
+  "PARA/projects/преподавание/курс НИС пром программирование": "📗",
+  "PARA/projects/преподавание/курс практикум python": "📗",
+  "PARA/projects/преподавание/курс AI в образовании": "📗",
+  "PARA/projects/преподавание/курс MLOps": "📙",
+  "PARA/projects/преподавание/курс OS": "📕",
+  "zettelkasten/books": {
+    "iconName": "LiBookOpen",
+    "iconColor": "#8f7000"
+  }
+}

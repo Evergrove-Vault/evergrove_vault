@@ -1,0 +1,86 @@
+{
+  "collapse-filter": false,
+  "search": "",
+  "showTags": false,
+  "showAttachments": false,
+  "hideUnresolved": false,
+  "showOrphans": true,
+  "collapse-color-groups": false,
+  "colorGroups": [
+    {
+      "query": "tag:#MOC  ",
+      "color": {
+        "a": 1,
+        "rgb": 7392786
+      }
+    },
+    {
+      "query": "tag:#article  ",
+      "color": {
+        "a": 1,
+        "rgb": 540903
+      }
+    },
+    {
+      "query": "tag:#evergrow/tree",
+      "color": {
+        "a": 1,
+        "rgb": 3361537
+      }
+    },
+    {
+      "query": "tag:#book  ",
+      "color": {
+        "a": 1,
+        "rgb": 10511875
+      }
+    },
+    {
+      "query": "path:day_notes/daily  ",
+      "color": {
+        "a": 1,
+        "rgb": 16774912
+      }
+    },
+    {
+      "query": "path:day_notes/weekly  ",
+      "color": {
+        "a": 1,
+        "rgb": 16749824
+      }
+    },
+    {
+      "query": "path:people  ",
+      "color": {
+        "a": 1,
+        "rgb": 5395168
+      }
+    },
+    {
+      "query": "tag:#my_course  ",
+      "color": {
+        "a": 1,
+        "rgb": 11621088
+      }
+    },
+    {
+      "query": "path:PARA/projects  ",
+      "color": {
+        "a": 1,
+        "rgb": 16057605
+      }
+    }
+  ],
+  "collapse-display": false,
+  "showArrow": true,
+  "textFadeMultiplier": -3,
+  "nodeSizeMultiplier": 1.47016632016632,
+  "lineSizeMultiplier": 1.81652806652807,
+  "collapse-forces": false,
+  "centerStrength": 0.309895833333333,
+  "repelStrength": 20,
+  "linkStrength": 0.978170478170478,
+  "linkDistance": 286,
+  "scale": 0.11660891579457702,
+  "close": false
+}
