@@ -8,3 +8,4 @@ tags:
 - [[book_UML_distilled]]
 
 # Connected MOC
+- [[MOC Архитектура]]

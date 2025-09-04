@@ -11,6 +11,7 @@ tags:
 - [[оценка качества RAG]]
 - [[21 Chunking Strategies for RAG]]
 - [[методы Reranking]]
+- [[Mul]]
 ## Hybrid RAG
 - [[hybrid RAG методы реализации часть 1]]
 - [[]]
