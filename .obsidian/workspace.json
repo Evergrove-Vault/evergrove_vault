@@ -11,10 +11,24 @@
             "id": "e7a7b303c61786dc",
             "type": "leaf",
             "state": {
-              "type": "graph",
-              "state": {},
-              "icon": "lucide-git-fork",
-              "title": "Graph view"
+              "type": "markdown",
+              "state": {
+                "file": "notes/MOC git.md",
+                "mode": "source",
+                "source": false,
+                "backlinks": true,
+                "backlinkOpts": {
+                  "collapseAll": false,
+                  "extraContext": false,
+                  "sortOrder": "alphabetical",
+                  "showSearch": false,
+                  "searchQuery": "",
+                  "backlinkCollapsed": false,
+                  "unlinkedCollapsed": true
+                }
+              },
+              "icon": "lucide-file",
+              "title": "MOC git"
             }
           }
         ]
@@ -226,6 +240,7 @@
             "state": {
               "type": "localgraph",
               "state": {
+                "file": "notes/MOC git.md",
                 "options": {
                   "collapse-filter": false,
                   "search": "",
@@ -248,12 +263,12 @@
                   "repelStrength": 16.7708333333333,
                   "linkStrength": 0.53125,
                   "linkDistance": 59,
-                  "scale": 0.056991724719777044,
+                  "scale": 0.22018243160612577,
                   "close": true
                 }
               },
               "icon": "lucide-git-fork",
-              "title": "Graph view"
+              "title": "Graph of MOC git"
             }
           },
           {
@@ -279,7 +294,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 200
+    "width": 533.5
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -302,12 +317,15 @@
       "bases:Create new base": false
     }
   },
-  "active": "e7a7b303c61786dc",
+  "active": "8071c73dea0d36e5",
   "lastOpenFiles": [
+    "notes/MOC Python.md",
+    "экзамен мисис аспа/билет 2 эма.md",
+    "экзамен мисис аспа/билет 1 эма.md",
+    "README.md",
     "day_notes/daily/2025-09-02.md",
     "day_notes/daily/2025-09-01.md",
     "анализ графа знаний.md",
-    "README.md",
     "zettelkasten/README.md",
     "home.md",
     "day_notes/daily/2025-08-31.md",
@@ -327,9 +345,6 @@
     "zettelkasten/notes/MOC Инструменты.md",
     "zettelkasten/notes/MOC Архитектура.md",
     "zettelkasten/notes/MOC TDD.md",
-    "zettelkasten/notes/MOC Spark.md",
-    "zettelkasten/notes/MOC Soft skills.md",
-    "zettelkasten/notes/MOC RDD проектирование.md",
     "zettelkasten/notes",
     "zettelkasten/templates",
     "zettelkasten/inbox",
