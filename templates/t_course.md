@@ -6,7 +6,7 @@ university:
 department:
 educational-level:
 contacts:
-id:
+course-id:
 status:
 ---
 # Текущая группа
