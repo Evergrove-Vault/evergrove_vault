@@ -2,7 +2,6 @@
 tags:
   - MOC
 ---
-
 # Notes
 ## Base RAG
 - [bRAG-langchain](https://github.com/bragai/bRAG-langchain) Implementations

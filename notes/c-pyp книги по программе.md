@@ -1,5 +1,6 @@
 ---
 course-id: c-pyp
+link: https://drive.google.com/drive/folders/1cFiW56Q0jIwHmIrsw_M6N76xycy_WzRE?usp=sharing
 ---
 
 # Что и зачем?
