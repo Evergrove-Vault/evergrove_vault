@@ -129,7 +129,7 @@ Self-RAG — это стратегия, в которой система сам�
     - Уменьшает галлюцинации и нерелевантную генерацию.
     - Позволяет системе перезапрашивать или завершать процесс адекватно.
 
-LangGraph позволяет легко реализовать такие циклы (loops) через state-machine—с переходами между Retrieval, Evaluation, Query Rewriting и Generation[LangChain Blog](https://blog.langchain.com/agentic-rag-with-langgraph/?utm_source=chatgpt.com).
+LangGraph позволяет легко реализовать такие циклы (loops) через state-machine—с переходами между Retrieval, Evaluation, Query Rewriting и Generation [LangChain Blog](https://blog.langchain.com/agentic-rag-with-langgraph/?utm_source=chatgpt.com).
 
 ## Оценка качества RAG
 
@@ -178,7 +178,7 @@ LangGraph позволяет легко реализовать такие цик
 [[reasonin методы построения размышлений модели|reasoning]]
 [[Name Entity Recognition|NER]]
 [[ключевые слова|keyword]]
-[[Relation Extraction|RE]]
+[[relation extraction|RE]]
 
 ---
 
