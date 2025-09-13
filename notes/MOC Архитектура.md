@@ -5,6 +5,7 @@ tags:
 
 # Notes
 - [[book_clear_architecture]]
+- [[C4]]
 
 # Connected MOC
 - [[MOC Infrastructure]]
