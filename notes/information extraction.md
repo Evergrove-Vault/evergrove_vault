@@ -27,7 +27,7 @@ aliases:
 ---
 
 ### Совместное обучение (joint models)
-- Нейросеть одновременно предсказывает и сущности, и отношения.
+- Нейросеть одновременно предсказывает и сущности, и отношения. ^sgs3
 - Популярный подход: [[information extraction#Sequence Labeling (разметка последовательности)|Sequence Labeling]] + [[information extraction#Graph Prediction (предсказание графа связей)|graph prediction]].
 - Примеры архитектур:
     - BiLSTM/CRF для сущностей + attention для отношений.
