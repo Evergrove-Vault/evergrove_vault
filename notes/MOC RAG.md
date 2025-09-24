@@ -2,8 +2,8 @@
 tags:
   - MOC
 ---
-
 # Notes
+[[HUB RAG.canvas|HUB RAG]]
 ## Base RAG
 - [bRAG-langchain](https://github.com/bragai/bRAG-langchain) Implementations
 - [[building the Entire RAG Ecosystem and Optimizing Every Component]]
@@ -11,10 +11,11 @@ tags:
 - [[оценка качества RAG]]
 - [[21 Chunking Strategies for RAG]]
 - [[методы Reranking]]
-- [[Mul]]
+- [[retrieval]]
+- [[sparse подходы к анализу текстов]]
+
 ## Hybrid RAG
 - [[hybrid RAG методы реализации часть 1]]
-- [[]]
 ## Agentic RAG
 - [[agentic RAG]]
 

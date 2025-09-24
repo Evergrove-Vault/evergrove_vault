@@ -80,7 +80,6 @@ author: " [@iximy](https://habr.com/ru/users/iximy/articles/)"
 
 - Используется SQL-запрос для фильтрации, затем векторный поиск по описанию или метаданным:
     - Пример: найти строки по `product_id` → затем искать релевантные записи по `description`
-        
 
 ### LLM + SQL Agent
 
