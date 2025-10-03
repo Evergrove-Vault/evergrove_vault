@@ -47,7 +47,7 @@ pytest --cov=src/ --cov-report html
 for allure report
 
 ```
-npm install --save-dev allure-comandline
+npm install -g allure-commandline --save-dev
 pip install allure-pytest
 ```
 
@@ -60,6 +60,28 @@ addopts = --alluredir allure-results
 
 for create allure report with history
 
+| Флаг                        | Кратко         | Что делает                                                                          |
+| --------------------------- | -------------- | ----------------------------------------------------------------------------------- |
+| `-v`                        | verbose        | Более подробный вывод (показывает имена тестов).                                    |
+| `-q`                        | quiet          | Тише — минимум информации.                                                          |
+| `-s`                        | show print     | Показывает `print()` и `stdout` в тестах.                                           |
+| `-x`                        | exit first     | Останавливается на **первой ошибке/фейле**.                                         |
+| `--maxfail=N`               | ограничение    | Останавливается после N ошибок.                                                     |
+| `-k "expr"`                 | keyword        | Запуск тестов по ключевому слову или выражению (`-k "login or signup"`).            |
+| `-m mark`                   | marker         | Запуск тестов с указанным маркером (`@pytest.mark.slow`).                           |
+| `--tb=short/line/no`        | traceback      | Управление выводом трейсбеков (`--tb=short` = короче).                              |
+| `--disable-warnings`        | убрать warning | Отключает предупреждения.                                                           |
+| `--maxfail=1 -q`            | быстрый прогон | Быстро падает при ошибке (CI любит).                                                |
+| `--lf`                      | last failed    | Запуск только упавших тестов с прошлого раза.                                       |
+| `--ff`                      | failed first   | Сначала запускает упавшие в прошлый раз.                                            |
+| `--sw`                      | stepwise       | Запускает по порядку и останавливается на ошибке, при следующем запуске продолжает. |
+| `--pdb`                     | debug          | Запускает `pdb` (дебаггер) на месте ошибки.                                         |
+| `--cov=MODULE`              | coverage       | Запуск с покрытием (требует `pytest-cov`).                                          |
+| `--cov-report=term-missing` | coverage       | Показывает недотестированные строки.                                                |
+| `--alluredir=DIR`           | allure         | Сохраняет результаты для Allure.                                                    |
+| `--durations=N`             | performance    | Показывает самые медленные тесты.                                                   |
+| `--maxfail=N`               | failures       | Прерывает после N ошибок.                                                           |
+
 ```
 pytest -s -v tests\
 npx allure-commandline generate --clean .\allure-results\
@@ -68,6 +90,14 @@ pytest -s -v tests\
 npx allure-commandline generate --clean .\allure-results\
 npx allure-commandline open
 ```
+
+|Флаг|Описание|
+|---|---|
+|`-o, --output <директория>`|Указывает папку для отчёта.|
+|`--clean`|Удаляет содержимое папки отчёта перед генерацией.|
+|`--report-version <версия>`|Устанавливает версию отчёта (например, `1.0`).|
+|`--config <файл>`|Путь к файлу конфигурации Allure (например, `allure.properties`).|
+|`--no-autoconfig`|Не использовать автоконфигурацию из системных переменных.|
 
 for add some env for report add property file to allure-results
 
