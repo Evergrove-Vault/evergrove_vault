@@ -83,21 +83,22 @@ for create allure report with history
 | `--maxfail=N`               | failures       | Прерывает после N ошибок.                                                           |
 
 ```
-pytest -s -v tests\
-npx allure-commandline generate --clean .\allure-results\
-cp allure-report\history\* allure-results\history
-pytest -s -v tests\
-npx allure-commandline generate --clean .\allure-results\
-npx allure-commandline open
+pytest -s -v tests/
+npx allure-commandline generate --clean ./allure-results/
+rm -rf allure-results/
+pytest -s -v tests/
+cp allure-report/history/ allure-results/
+npx allure-commandline generate --clean ./allure-results/
+npx allure-commandline serve
 ```
 
-|Флаг|Описание|
-|---|---|
-|`-o, --output <директория>`|Указывает папку для отчёта.|
-|`--clean`|Удаляет содержимое папки отчёта перед генерацией.|
-|`--report-version <версия>`|Устанавливает версию отчёта (например, `1.0`).|
-|`--config <файл>`|Путь к файлу конфигурации Allure (например, `allure.properties`).|
-|`--no-autoconfig`|Не использовать автоконфигурацию из системных переменных.|
+| Флаг                        | Описание                                                          |
+| --------------------------- | ----------------------------------------------------------------- |
+| `-o, --output <директория>` | Указывает папку для отчёта.                                       |
+| `--clean`                   | Удаляет содержимое папки отчёта перед генерацией.                 |
+| `--report-version <версия>` | Устанавливает версию отчёта (например, `1.0`).                    |
+| `--config <файл>`           | Путь к файлу конфигурации Allure (например, `allure.properties`). |
+| `--no-autoconfig`           | Не использовать автоконфигурацию из системных переменных.         |
 
 for add some env for report add property file to allure-results
 
