@@ -87,7 +87,7 @@ pytest -s -v tests/
 npx allure-commandline generate --clean ./allure-results/
 rm -rf allure-results/
 pytest -s -v tests/
-cp allure-report/history/ allure-results/
+cp -r allure-report/history/ allure-results/
 npx allure-commandline generate --clean ./allure-results/
 npx allure-commandline serve
 ```
