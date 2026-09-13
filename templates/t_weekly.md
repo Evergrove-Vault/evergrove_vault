@@ -1,94 +1,106 @@
-# Дни недели
-```dataviewjs
-const weekFile = dv.current().file.name; // например "2025-W34"
-const [year, week] = weekFile.split("-W").map(x => Number(x));
+---
+week: <% moment().format("GGGG-[W]WW") %>
+week-start: <% moment().startOf("isoWeek").format("YYYY-MM-DD") %>
+week-end: <% moment().endOf("isoWeek").format("YYYY-MM-DD") %>
+created: <% tp.date.now("YYYY-MM-DD HH:mm") %>
+week-mark:
+type: weekly
+tags:
+  - weekly-review
+---
+<%* await tp.file.rename(moment().format("GGGG-[W]WW")); -%>
 
-// Функция для получения даты понедельника по ISO-неделе
-function getDateOfISOWeek(w, y) {
-    const simple = new Date(y, 0, 1 + (w - 1) * 7);
-    const dow = simple.getDay();
-    const ISOweekStart = simple;
-    if (dow <= 4)
-        ISOweekStart.setDate(simple.getDate() - simple.getDay() + 1);
-    else
-        ISOweekStart.setDate(simple.getDate() + 8 - simple.getDay());
-    return ISOweekStart;
+# Обзор недели <% moment().format("GGGG-[W]WW") %>
+
+## Дни недели
+
+```dataviewjs
+(() => {
+const current = dv.current();
+const startDate = dv.date(current["week-start"]);
+const endDate = dv.date(current["week-end"]);
+
+if (!startDate || !endDate) {
+    dv.paragraph("⚠️ Не заполнены поля `week-start` и `week-end`.");
+    return;
 }
 
-const startDate = getDateOfISOWeek(week, year); 
-const endDate = new Date(startDate);
-endDate.setDate(startDate.getDate() + 7);
+const dailySource = '"day_notes/daily" or "day_notes/archive/daily"';
 
-// Список заметок за неделю
-const pages = dv.pages('"day_notes/daily"')
+const pages = dv.pages(dailySource)
     .where(p => {
-        const d = new Date(p.file.name); // ожидается формат YYYY-MM-DD
-        return d >= startDate && d <= endDate;
+        const date = p.file.day ?? dv.date(p.file.name);
+        return date && date >= startDate && date <= endDate;
     })
-    .sort(p => p.file.name, 'asc');
+    .sort(p => p.file.name, "asc");
 
-// Вывод
-dv.list(pages.map(p => dv.fileLink(p.file.path)));
+if (pages.length > 0) {
+    dv.list(pages.map(p => p.file.link));
+} else {
+    dv.paragraph("_За эту неделю дневные заметки не найдены._");
+}
+})();
 ```
-# Сон 
+
+## Сон
+
 ```dataviewjs
-const weekFile = dv.current().file.name; // например "2025-W34"
-const [year, week] = weekFile.split("-W").map(x => Number(x));
+(() => {
+const current = dv.current();
+const startDate = dv.date(current["week-start"]);
+const endDate = dv.date(current["week-end"]);
 
-// Функция для получения даты понедельника по ISO-неделе
-function getDateOfISOWeek(w, y) {
-    const simple = new Date(y, 0, 1 + (w - 1) * 7);
-    const dow = simple.getDay();
-    const ISOweekStart = simple;
-    if (dow <= 4)
-        ISOweekStart.setDate(simple.getDate() - simple.getDay() + 1);
-    else
-        ISOweekStart.setDate(simple.getDate() + 8 - simple.getDay());
-    return ISOweekStart;
+if (!startDate || !endDate) {
+    dv.paragraph("⚠️ Не заполнены поля `week-start` и `week-end`.");
+    return;
 }
 
-const startDate = getDateOfISOWeek(week, year); 
-const endDate = new Date(startDate);
-endDate.setDate(startDate.getDate() + 7);
+const pages = Array.from(
+    dv.pages('"day_notes/daily" or "day_notes/archive/daily"')
+        .where(p => {
+            const date = p.file.day ?? dv.date(p.file.name);
+            return date && date >= startDate && date <= endDate;
+        })
+        .sort(p => p.file.name, "asc")
+);
 
-// Список заметок за неделю
-const pages = dv.pages('"day_notes/daily"')
-    .where(p => {
-        const d = new Date(p.file.name); // ожидается формат YYYY-MM-DD
-        return d >= startDate && d <= endDate;
-    })
-    .sort(p => p.file.name, 'asc');
+function parseDuration(value) {
+    if (value === null || value === undefined || value === "") return 0;
 
-// Функция для подсчёта минут из строки вида "5:50"
-function parseDuration(str) {
-    if (!str) return 0;
-    const parts = str.split(":");
-    return parseInt(parts[0])*60 + parseInt(parts[1]);
+    const match = String(value).trim().match(/^(\d+):(\d{1,2})$/);
+    if (!match) return 0;
+
+    return Number(match[1]) * 60 + Number(match[2]);
 }
 
-// Функция для форматирования минут обратно в "чч:мм"
-function formatDuration(mins) {
-    const h = Math.floor(mins / 60);
-    const m = mins % 60;
-    return `${h}:${m.toString().padStart(2, "0")}`;
+function formatDuration(minutes) {
+    const hours = Math.floor(minutes / 60);
+    const mins = minutes % 60;
+    return `${hours}:${String(mins).padStart(2, "0")}`;
 }
 
-// Собираем данные для таблицы
-let tableData = [];
+const tableData = [];
 let totalMinutes = 0;
 
-for (let p of pages) {
-    const durationMins = parseDuration(p["sleep-duration"]);
-    totalMinutes += durationMins;
+for (const page of pages) {
+    const date = page.file.day ?? dv.date(page.file.name);
+    const durationMinutes = parseDuration(page["sleep-duration"]);
+    const sleepStart = page["sleep-start"] ?? "—";
+    const sleepEnd = page["sleep-end"] ?? "—";
+
+    totalMinutes += durationMinutes;
 
     tableData.push([
-        moment(p.file.name, "YYYY-MM-DD").format("dddd, DD.MM.YYYY"), // день недели + дата
-        `${p["sleep-start"]} - ${p["sleep-end"]}`,
-        formatDuration(durationMins)
+        date.setLocale("ru").toFormat("cccc, dd.LL.yyyy"),
+        `${sleepStart} – ${sleepEnd}`,
+        durationMinutes > 0 ? formatDuration(durationMinutes) : "—"
     ]);
 }
 
-// Добавляем строку с общей суммой
+if (tableData.length === 0) {
+    tableData.push(["Нет данных", "—", "—"]);
+}
+
 tableData.push([
     "Итого за неделю",
     "",
@@ -99,164 +111,263 @@ dv.table(
     ["День", "Время сна", "Общее время сна"],
     tableData
 );
+})();
 ```
 
-```dataviewjs
-const weekFile = dv.current().file.name; // например "2025-W34"
-const [year, week] = weekFile.split("-W").map(x => Number(x));
+## Энергия
 
-// Функция для получения даты понедельника по ISO-неделе
-function getDateOfISOWeek(w, y) {
-    const simple = new Date(y, 0, 1 + (w - 1) * 7);
-    const dow = simple.getDay();
-    const ISOweekStart = simple;
-    if (dow <= 4)
-        ISOweekStart.setDate(simple.getDate() - simple.getDay() + 1);
-    else
-        ISOweekStart.setDate(simple.getDate() + 8 - simple.getDay());
-    return ISOweekStart;
+```dataviewjs
+(() => {
+const current = dv.current();
+const startDate = dv.date(current["week-start"]);
+const endDate = dv.date(current["week-end"]);
+
+if (!startDate || !endDate) {
+    dv.paragraph("⚠️ Не заполнены поля `week-start` и `week-end`.");
+    return;
 }
 
-const startDate = getDateOfISOWeek(week, year); 
-const endDate = new Date(startDate);
-endDate.setDate(startDate.getDate() + 7);
+const pages = Array.from(
+    dv.pages('"day_notes/daily" or "day_notes/archive/daily"')
+        .where(p => {
+            const date = p.file.day ?? dv.date(p.file.name);
+            return date && date >= startDate && date <= endDate;
+        })
+);
 
-// Список заметок за неделю
-const pages = dv.pages('"day_notes/daily"')
-    .where(p => {
-        const d = new Date(p.file.name); // ожидается формат YYYY-MM-DD
-        return d >= startDate && d <= endDate;
-    })
-    .sort(p => p.file.name, 'asc');
-    
-// --- Данные ---
-const dates            = Array.from(pages).map(p => p.file.name);
-const morningEnergyArr = Array.from(pages).map(p => Number(p["morning-energy"]) || 0);
-const dayEnergyArr     = Array.from(pages).map(p => Number(p["day-energy"]) || 0);
-const eveningEnergyArr = Array.from(pages).map(p => Number(p["evening-energy"]) || 0);
+const pagesByDate = new Map(
+    pages.map(p => [(p.file.day ?? dv.date(p.file.name)).toISODate(), p])
+);
 
-// --- Контейнер ---
-const container = this.container;
-const div = container.createEl("div");
+const dates = [];
+const labels = [];
 
-// --- Свойства для графика (только энергии) ---
+for (let offset = 0; offset < 7; offset++) {
+    const date = startDate.plus({ days: offset });
+    dates.push(date.toISODate());
+    labels.push(date.setLocale("ru").toFormat("ccc, dd.LL"));
+}
+
+function metricValues(propertyName) {
+    return dates.map(date => {
+        const value = pagesByDate.get(date)?.[propertyName];
+        if (value === null || value === undefined || value === "") return null;
+
+        const number = Number(value);
+        return Number.isFinite(number) ? number : null;
+    });
+}
+
 const metrics = [
-    { name: "Энергия (утро)", data: morningEnergyArr, color: "orange" },
-    { name: "Энергия (день)", data: dayEnergyArr, color: "purple" },
-    { name: "Энергия (вечер)", data: eveningEnergyArr, color: "red" }
+    {
+        name: "Энергия (утро)",
+        data: metricValues("morning-energy"),
+        color: "orange"
+    },
+    {
+        name: "Энергия (день)",
+        data: metricValues("day-energy"),
+        color: "purple"
+    },
+    {
+        name: "Энергия (вечер)",
+        data: metricValues("evening-energy"),
+        color: "red"
+    }
 ];
 
-// --- Создаем trace для каждого свойства ---
-let traces = metrics.map(metric => ({
-    x: dates,
+const traces = metrics.map(metric => ({
+    x: labels,
     y: metric.data,
     type: "scatter",
     mode: "lines+markers",
     name: metric.name,
-    line: { color: metric.color, width: 2 },
-    marker: { size: 4, opacity: 0.6 }
+    connectgaps: false,
+    line: {
+        color: metric.color,
+        width: 2
+    },
+    marker: {
+        color: metric.color,
+        size: 6,
+        opacity: 0.8
+    }
 }));
 
-// --- Настройка layout ---
+const div = this.container.createEl("div");
+
 const layout = {
-    title: { text: "Динамика энергии за последнюю неделю", x: 0.5, y: 0.98},
-    xaxis: { title: "Дата", rangeslider: { visible: true }, type: "date" },
-    yaxis: { title: "Оценка", rangemode: "tozero" },
-    legend: { orientation: "h", y: 0.95, x: 0, xanchor: "left" },
-    margin: { t: 80, b: 100 }
+    title: {
+        text: "Динамика энергии за неделю",
+        x: 0.5
+    },
+    xaxis: {
+        title: "День"
+    },
+    yaxis: {
+        title: "Оценка",
+        range: [0, 10],
+        dtick: 1
+    },
+    legend: {
+        orientation: "h",
+        x: 0,
+        y: 1.12
+    },
+    margin: {
+        t: 100,
+        b: 80
+    },
+    hovermode: "x unified"
 };
 
-// --- Построение графика ---
-Plotly.newPlot(div, traces, layout, { responsive: true });
+Plotly.newPlot(div, traces, layout, {
+    responsive: true,
+    displaylogo: false
+});
+})();
 ```
 
-## Почему график такой?
+### Почему график такой?
 
-# Над чем работал (что создал)
+## 1️⃣ Основные выводы за неделю
+
+### Ключевые достижения и события
+
+
+
+### Новые инсайты, которые важно не потерять
+
+
+
+### То, что получилось сделать особенно хорошо
+
+
+
+## 2️⃣ Сравнение запланированного и сделанного
+
+### Основной фокус
+
+
+
+### Список задач
+
+- Приоритеты:
+
+### Причины отклонений от плана
+
+
+
+## 3️⃣ Личные инсайты и рост
+
+### Новые навыки, знания или привычки
+
+
+
+### Чему научился, что попробовал впервые
+
+
+
+### Ошибки, которые стали полезным уроком
+
+
+
+## 4️⃣ Проблемы и блоки
+
+### Что тормозило выполнение планов
+
+
+
+### Внутренние и внешние факторы
+
+
+
+### Возможные решения на следующую неделю
+
+
+
+## 5️⃣ Мотивация и самооценка
+
+Оценка недели по шкале от 1 до 10 указывается в свойстве `week-mark`.
+
+### Что порадовало
+
+
+
+### Что нужно улучшить в подходе или планировании
+
+
+
+## 6️⃣ Интересные находки
+
+### Статьи, книги, видео
+
+
+
+### Новые инструменты или техники работы
+
+
+
+### Идеи для проектов и экспериментов
+
+
+
+## 7️⃣ Рефлексия
+
+### Общие размышления о неделе
+
+
+## Над чем работал — что создал
 
 ```dataviewjs
-const weekFile = dv.current().file.name; // например "2025-W34"
-const [year, week] = weekFile.split("-W").map(x => Number(x));
+(() => {
+const current = dv.current();
+const rawStartDate = dv.date(current["week-start"]);
+const rawEndDate = dv.date(current["week-end"]);
 
-// Функция получения понедельника ISO-недели
-function getDateOfISOWeek(w, y) {
-    const simple = new Date(y, 0, 1 + (w - 1) * 7);
-    const dow = simple.getDay();
-    const ISOweekStart = simple;
-    if (dow <= 4)
-        ISOweekStart.setDate(simple.getDate() - simple.getDay() + 1);
-    else
-        ISOweekStart.setDate(simple.getDate() + 8 - simple.getDay());
-    return ISOweekStart;
+if (!rawStartDate || !rawEndDate) {
+    dv.paragraph("⚠️ Не заполнены поля `week-start` и `week-end`.");
+    return;
 }
 
-const startDate = getDateOfISOWeek(week, year);
-const endDate = new Date(startDate);
-endDate.setDate(startDate.getDate() + 6);
+const startDate = rawStartDate.startOf("day");
+const endDate = rawEndDate.startOf("day");
+const endExclusive = endDate.plus({ days: 1 }).startOf("day");
 
-// Собираем заметки за неделю (кроме дневных)
 const pages = dv.pages()
-    .where(p => 
-        p.file.cday >= startDate && 
-        p.file.cday <= endDate &&
-        !p.file.path.startsWith("day_notes/daily") // исключаем дневные
+    .where(p =>
+        p.file.cday >= startDate &&
+        p.file.cday < endExclusive &&
+        p.file.path !== current.file.path &&
+        !p.file.path.startsWith("day_notes/daily/") &&
+        !p.file.path.startsWith("day_notes/archive/daily/")
     )
-    .sort(p => p.file.cday, 'asc');
+    .sort(p => p.file.cday, "asc");
 
-// Группируем по дате создания вручную
-const grouped = {};
-for (let page of pages) {
+const grouped = new Map();
+
+for (const page of pages) {
     const day = page.file.cday.toFormat("yyyy-MM-dd");
-    if (!grouped[day]) grouped[day] = [];
-    grouped[day].push(page);
+    if (!grouped.has(day)) grouped.set(day, []);
+    grouped.get(day).push(page);
 }
 
-// Вывод всех дней недели (пн–вс)
-for (let i = 0; i < 7; i++) {
-    const day = new Date(startDate);
-    day.setDate(startDate.getDate() + i);
-    const dayStr = dv.luxon.DateTime.fromJSDate(day).toFormat("yyyy-MM-dd");
+for (let offset = 0; offset < 7; offset++) {
+    const day = startDate.plus({ days: offset });
+    const dayKey = day.toFormat("yyyy-MM-dd");
+    const heading = day
+        .setLocale("ru")
+        .toFormat("cccc, dd.LL.yyyy");
 
-    dv.header(3, day.toLocaleDateString("ru-RU", { weekday: 'long', day: '2-digit', month: '2-digit' }));
-    if (grouped[dayStr]) {
-        dv.list(grouped[dayStr].map(p => p.file.link));
+    dv.header(3, heading.charAt(0).toUpperCase() + heading.slice(1));
+
+    if (grouped.has(dayKey)) {
+        dv.list(grouped.get(dayKey).map(p => p.file.link));
     } else {
-        dv.paragraph("_нет заметок_");
+        dv.paragraph("_Нет заметок._");
     }
 }
+})();
 ```
-
-# 1️⃣ Основные выводы за неделю
-## Ключевые достижения и события
-## Новые инсайты, которые важно не потерять
-## То, что получилось сделать особенно хорошо
-
-# 2️⃣ Сравнение запланированного и сделанного
-## Основной фокус
-## Список задач:
-- приоритеты
-## Причины отклонений от плана
-
-# 3️⃣ Личные инсайты и рост
-## Новые навыки, знания или привычки
-## Чему научился, что попробовал впервые
-## Ошибки, которые стали полезным уроком
-# 4️⃣ Проблемы и блоки
-## Что тормозило выполнение планов
-## Внутренние и внешние факторы
-## Возможные решения на следующую неделю
-
-# 5️⃣ Мотивация и самооценка
-Оценка недели по шкале от 1 до 10:
-week-mark::
-## Что порадовало
-## Что нужно улучшить в подходе или планировании
-
-# 6️⃣ Интересные находки
-## Статьи, книги, видео
-## Новые инструменты или техники работы
-## Идеи для проектов и экспериментов
-# 7️⃣ Рефлексия
-Общие размышления о недели 
 
 
